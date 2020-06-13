@@ -25,16 +25,20 @@ input, label {
     padding: 10px;
 }
 
-.timeform{
+.timeform {
     padding: 20px;
     margin: 0;
     position: fixed;
     display: inline-block;
     left: 50%;
     float: left;
-    margin-left: -400px;
+    margin-left: -200px;
+    border: 1px solid #ccc;
     }
-
+.timeform input {
+    border: none;
+    text-align: center;
+    }
 .header {
     padding: 10px;
     text-align: center;
@@ -143,16 +147,33 @@ input, label {
 
     <div class="timeform">
     <form>
-        <label for = "Fromdate"> From: </label>
-        <input type="date" id="Fromdate" name="Fromdate">
-        <label for = "Fromtime"></label>
-        <input type="time" id="Fromtime" name="Fromtime">
-        <label for = "Todate"> To: </label>
-        <input type="date" id="Todate" name="Todate">
-        <label for = "Totime"></label>
-        <input type="time" id="Totime" name="Totime">
+        <div class="Fromtime">
+            <label for = "Fromdate"><h4>From:</h4> </label>
+            <input type="date" id="Fromdate" name="Fromdate">
+            <input type="number" min="0" max="23" placeholder="23">:
+            <input type="number" min="0" max="59" placeholder="00">:
+            <input type="number" min="0" max="59" placeholder="00">
+        </div>
+        <div class="Totime">
+            <label for = "Todate"><h4>To:</h4> </label>
+            <input type="date" id="Todate" name="Todate">
+            <input type="number" min="0" max="23" placeholder="23">:
+            <input type="number" min="0" max="59" placeholder="00">:
+            <input type="number" min="0" max="59" placeholder="00">
+        </div>
         <input type ="submit">
     </form>
     </div>
+    <script>
+        document.querySelectorAll('input[type=number]')
+            .forEach(e => e.oninput = () => {
+                // Always 2 digits
+                if (e.value.length >= 2) e.value = e.value.slice(0, 2);
+                // 0 on the left (doesn't work on FF)
+                if (e.value.length === 1) e.value = '0' + e.value;
+                // Avoiding letters on FF
+                if (!e.value) e.value = '00';
+            });
+    </script>
 </body>
 </html>

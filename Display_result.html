@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SearchPage</title>
+    <title>Display Result</title>
+</head>
 <style>
-* {
+    * {
     box-sizing: border-box;
 }
 
@@ -121,12 +121,9 @@ input, label {
     position: relative;
     margin: 10px 15px 15px 10px;
 }
-
 </style>
-
-</head>
 <body>
-    <div class="row1">
+<div class="row1">
         <div class="side1">
         <img class ="logo-img" src = "images\Logo.png" width ="150" height = "150" ALT="logoFPS" ALIGN="CENTER">
     </div>
@@ -144,40 +141,5 @@ input, label {
         <a href="#">Reports</a>
         <a href="#" class="right">Logout</a>
     </div>
-
-    <div class="timeform">
-    <form action="{{ url_for('get') }}" method="post">
-        <div class="Fromtime">
-            <label><h4>From:</h4> </label>
-            <input type="number" name="fday" placeholder="Day">
-            <input type="number" name="fmonth" placeholder="Month">
-            <input type="number" name="fyear" placeholder="Year">
-            <input type="number" min="0" max="23" name="fhour" placeholder="23">:
-            <input type="number" min="0" max="59" name="fminute" placeholder="59">
-
-        </div>
-        <div class="Totime">
-            <label><h4>To:</h4> </label>
-            <input type="number" name="tday" placeholder="Day">
-            <input type="number" name="tmonth" placeholder="Month">
-            <input type="number" name="tyear" placeholder="Year">
-            <input type="number" min="0" max="23" name="fhour" placeholder="1">:
-            <input type="number" min="0" max="59" name="fminute" placeholder="01">
-
-        </div>
-        <button>Search</button>
-    </form>
-    </div>
-    <script>
-        document.querySelectorAll('input[type=number]')
-            .forEach(e => e.oninput = () => {
-                // Always 2 digits
-                if (e.value.length >= 2) e.value = e.value.slice(0, 2);
-                // 0 on the left (doesn't work on FF)
-                if (e.value.length === 1) e.value = '0' + e.value;
-                // Avoiding letters on FF
-                if (!e.value) e.value = '00';
-            });
-    </script>
 </body>
 </html>
